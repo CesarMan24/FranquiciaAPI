@@ -70,6 +70,13 @@ setInterval(() => {
   });
 }, 10000); // 10 segundos
 
+app.delete("/franquicia/ventasTotales", (req, res) => {
+  let franquiciaData = leerJSON();
+  franquiciaData.franquicia.ventasTotales = [];
+  escribirJSON(franquiciaData);
+  res.json({ mensaje: "ventasTotales eliminadas correctamente" });
+});
+
 app.listen(PORT, (err) => {
   //console.log(err);
   console.log(`app listening on port ${PORT}`);
