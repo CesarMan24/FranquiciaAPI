@@ -8,6 +8,9 @@ const sqs = new AWS.SQS({ apiVersion: "2012-11-05" });
 const QUEUE_URL =
   "https://sqs.us-east-1.amazonaws.com/165173101233/ventasparafranquicia";
 
+const errores = []; // <-- Agregado
+const mensajesRecibidos = []; // <-- Agregado
+
 const app = express();
 const PORT = 4001;
 app.use(cors());
@@ -33,6 +36,13 @@ app.get("/franquicia/ventasTotales", (req, res) => {
   res.json(leerJSON().franquicia.ventasTotales);
 });
 setInterval(() => {
+  const params = {
+    QueueUrl: QUEUE_URL,
+    MaxNumberOfMessages: 10,
+    WaitTimeSeconds: 0,
+    VisibilityTimeout: 10,
+  };
+
   sqs.receiveMessage(params, (err, data) => {
     if (err) {
       errores.push(err.message);
@@ -58,8 +68,8 @@ setInterval(() => {
       escribirJSON(franquiciaData);
     }
   });
-}, 5000);
-//});
+}, 10000); // 10 segundos
+
 app.listen(PORT, (err) => {
   //console.log(err);
   console.log(`app listening on port ${PORT}`);
