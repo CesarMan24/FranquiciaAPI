@@ -5,7 +5,8 @@ const AWS = require("aws-sdk");
 AWS.config.update({ region: "us-east-1" });
 
 const sqs = new AWS.SQS({ apiVersion: "2012-11-05" });
-const QUEUE_URL = "https://sqs.us-east-1.amazonaws.com/165173101233/ventas";
+const QUEUE_URL =
+  "https://sqs.us-east-1.amazonaws.com/165173101233/ventasparafranquicia";
 
 const app = express();
 const PORT = 4001;
