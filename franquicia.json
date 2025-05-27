@@ -1,0 +1,13 @@
+{
+  "franquicia": {
+    "nombrefranquicia": "GuisadosTu",
+    "ventasTotales": [
+      {
+        "precio": 90,
+        "metodo_pago": "Debito",
+        "platillo": "Caldo de res",
+        "cliente": "Christian Ramirez"
+      }
+    ]
+  }
+}
